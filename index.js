@@ -1,5 +1,4 @@
 import inquirer from "inquirer";
-
 let conversation = {
     "PKR": {
         "USD": 0.0038047407,
@@ -16,13 +15,8 @@ let conversation = {
         "PKR": 265.30,
         "USD": 1
     }
-}
-
-const answers: {
-    from: "PKR" | "USD" | "GBP",
-    to: "PKR" | "USD" | "GBP",
-    amount: number
-} = await inquirer.prompt([
+};
+const answers = await inquirer.prompt([
     {
         type: "list",
         name: "from",
@@ -41,14 +35,11 @@ const answers: {
         message: "Enter your conversion amount: "
     },
 ]);
-
-const { from, to, amount} = answers;
-
-if(from && to && amount) {
-   let result = conversation[from][to] * amount;
-   console.log(`Your converion from ${from} to ${to} is ${result}`);
-   
-}else {
+const { from, to, amount } = answers;
+if (from && to && amount) {
+    let result = conversation[from][to] * amount;
+    console.log(`Your converion from ${from} to ${to} is ${result}`);
+}
+else {
     console.log("Invalid inputs");
-    
 }
